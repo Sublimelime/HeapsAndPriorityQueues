@@ -4,11 +4,12 @@
 *Part of project: PriorityQueueTester
 */
 
-import java.util.ArrayList;
 
 public class MyPrioQueue<E extends Comparable> implements PriorityQueueInterface {
 
-    ArrayList<E> internalQueue = new ArrayList<>();
+    public MyPrioQueue() {
+
+    }
 
     @Override
     public boolean add(Comparable o) {
