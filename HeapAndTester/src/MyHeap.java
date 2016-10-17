@@ -6,7 +6,7 @@
 
 import java.util.ArrayList;
 
-public class MyHeap<E extends Comparable> implements HeapInterface {
+public class MyHeap<E extends Comparable> implements HeapInterface<E> {
 
     private ArrayList<E> internalHeap;
 
@@ -15,17 +15,26 @@ public class MyHeap<E extends Comparable> implements HeapInterface {
     }
 
     @Override
-    public boolean add(Comparable item) {
+    public boolean add(E item) {
         return insert(item);
     }
 
     @Override
-    public boolean insert(Comparable item) { //todo -write
-        return true;
+    public boolean insert(E item) { //todo -write
+        if(empty()) { //if empty, just add it
+            internalHeap.add(item);
+            return true;
+        }else
+            internalHeap.add(internalHeap.size(),item); //add the item to the end of the arrayList
+        //heapify
+        
+
+
+        return false;
     }
 
     @Override
-    public Comparable remove() { //todo -write
+    public E remove() { //todo -write
         if (empty())
             return null;
 
@@ -43,7 +52,7 @@ public class MyHeap<E extends Comparable> implements HeapInterface {
     }
 
     @Override
-    public Comparable get(int x) {
+    public E get(int x) {
         return internalHeap.get(x);
     }
 
@@ -62,4 +71,44 @@ public class MyHeap<E extends Comparable> implements HeapInterface {
 
         return finalString;
     }
+
+    /**
+     * Gets the parent index off of an initial index.
+     * @param initialIndex the index of the node in question.
+     * @return parent index.
+     */
+    private int parentIndex(int initialIndex) {
+        if (initialIndex==0)
+            return initialIndex;
+        else {
+            return (initialIndex-1)/2;
+        }
+    }
+
+    /**
+     * Gets the left child index off of an initial index.
+     * @param initialIndex the index of the node in question.
+     * @return left child index.
+     */
+    private int leftChildIndex(int initialIndex) {
+        if (initialIndex==0)
+            return initialIndex;
+        else {
+            return (initialIndex*2)+1;
+        }
+    }
+
+    /**
+     * Gets the right child index off of an initial index.
+     * @param initialIndex the index of the node in question.
+     * @return right child index.
+     */
+    private int rightChildIndex(int initialIndex) {
+        if (initialIndex==0)
+            return initialIndex;
+        else {
+            return (initialIndex*2)+2;
+        }
+    }
+
 }
