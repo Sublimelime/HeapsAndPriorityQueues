@@ -20,7 +20,7 @@ public class MainFile {
 
             switch (choice) {
                  case 1:
-                     System.out.println("Printing..."+heap+"\nDone printing.");
+                     System.out.println("Printing...\n"+heap+"\nDone printing.");
                      break;
                  case 2:
                      System.out.println("The size of the heap is: "+heap.size());
