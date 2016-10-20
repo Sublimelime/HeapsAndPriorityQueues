@@ -19,32 +19,23 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
         return insert(item);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean insert(E item) { //todo -write
+    public boolean insert(E item) { //todo -test
         int positionOfNewAdd = internalHeap.size();
-        System.out.println("Position of new add is initially "+positionOfNewAdd);
         if (empty()) { //if empty, just add it
             internalHeap.add(item);
             return true;
         } else
             internalHeap.add(internalHeap.size(), item); //add the item to the end of the arrayList
         //heapify-up
-        if (internalHeap.get(positionOfNewAdd).compareTo(internalHeap.get(parentIndex(positionOfNewAdd))) <= -1) { //if parent is bigger, heapify-up
+        if (internalHeap.get(positionOfNewAdd).compareTo(internalHeap.get(parentIndex(positionOfNewAdd))) >= 1) { //if parent is bigger, heapify-up
             do {
-               /* E temp = internalHeap.get(positionOfNewAdd); //suspend the value we just added into a variable, and swap them
-                System.out.println("Parent index of the new add at pos "+positionOfNewAdd+", is "+parentIndex(positionOfNewAdd));
-                System.out.println("Temp is "+temp);
-                System.out.println("The object at PONA is "+internalHeap.get(positionOfNewAdd));*/
-                internalHeap.set(positionOfNewAdd,internalHeap.set(parentIndex(positionOfNewAdd),internalHeap.get(positionOfNewAdd))); //todo this line is causing issues
+                internalHeap.set(positionOfNewAdd, internalHeap.set(parentIndex(positionOfNewAdd), internalHeap.get(positionOfNewAdd)));
                 positionOfNewAdd = parentIndex(positionOfNewAdd);
-                /*System.out.println("Heap after swap one: "+toString());
-                internalHeap.set(parentIndex(positionOfNewAdd), temp);
-                System.out.println("Heap after swap two: "+toString());
-                positionOfNewAdd--; //adjust the position of the newly added element*/
-
-            } while (positionOfNewAdd != 0 && internalHeap.get(positionOfNewAdd).compareTo(internalHeap.get(parentIndex(positionOfNewAdd))) <= -1); //continue until at root or parent is smaller
+            }
+            while (positionOfNewAdd != 0 && internalHeap.get(positionOfNewAdd).compareTo(internalHeap.get(parentIndex(positionOfNewAdd))) >= 1); //continue until at root or parent is smaller
         }
-        System.out.println("PONA at the end of this is "+positionOfNewAdd);
         return true;
     }
 
@@ -78,7 +69,7 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
 
     @Override
     public String toString() {
-        if(empty())
+        if (empty())
             return "Heap is empty.";
         String finalString = "{";
         for (E anInternalHeap : internalHeap) {
