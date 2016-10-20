@@ -44,7 +44,14 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
         if (empty())
             return null;
 
-        return null;
+        internalHeap.set(internalHeap.size() - 1, internalHeap.set(0, internalHeap.get(internalHeap.size() - 1))); //swap first with last value
+        System.out.println(toString());
+
+        E removedValue = internalHeap.remove(internalHeap.size() - 1); //remove the last value
+
+
+
+        return removedValue; //return last value
     }
 
     @Override
