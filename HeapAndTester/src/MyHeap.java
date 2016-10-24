@@ -49,7 +49,25 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
 
         E removedValue = internalHeap.remove(internalHeap.size() - 1); //remove the last value
 
+        //heapify-down todo add validity checking code
+        int currentIndex = internalHeap.size()-1;
+        while (currentIndex == 0 && internalHeap.get(currentIndex).compareTo(leftChildIndex(currentIndex)) >= 1
+                || internalHeap.get(currentIndex).compareTo(rightChildIndex(currentIndex)) >= 1) { //while at least one child is smaller
 
+            if (internalHeap.get(rightChildIndex(currentIndex)).compareTo(internalHeap.get(leftChildIndex(currentIndex))) >= 1) { //if left child smaller than right
+                internalHeap.set(leftChildIndex(currentIndex),internalHeap.set(currentIndex,internalHeap.get(leftChildIndex(currentIndex))));
+                currentIndex = leftChildIndex(currentIndex);
+                System.out.println("Current index after swapping the left child with the current is: "+currentIndex);
+            } else if (internalHeap.get(rightChildIndex(currentIndex)).compareTo(internalHeap.get(leftChildIndex(currentIndex))) >= -1){ //if right child smaller than left
+                internalHeap.set(rightChildIndex(currentIndex),internalHeap.set(currentIndex,internalHeap.get(rightChildIndex(currentIndex))));
+                currentIndex = rightChildIndex(currentIndex);
+                System.out.println("Current index after swapping the right child with the current is: "+currentIndex);
+            } else { //both smaller, and same size
+                internalHeap.set(rightChildIndex(currentIndex),internalHeap.set(currentIndex,internalHeap.get(rightChildIndex(currentIndex))));
+                currentIndex = rightChildIndex(currentIndex);
+            }
+            break;
+        }
 
         return removedValue; //return last value
     }
