@@ -21,7 +21,7 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean insert(E item) { //todo -test
+    public boolean insert(E item) {
         int positionOfNewAdd = internalHeap.size();
         if (empty()) { //if empty, just add it
             internalHeap.add(item);
@@ -40,7 +40,7 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
     }
 
     @Override
-    public E remove() { //todo -write
+    public E remove() { //todo -help, fix
         if (empty())
             return null;
 
@@ -49,24 +49,24 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
 
         E removedValue = internalHeap.remove(internalHeap.size() - 1); //remove the last value
 
-        //heapify-down todo add validity checking code
-        int currentIndex = internalHeap.size()-1;
-        while (currentIndex == 0 && internalHeap.get(currentIndex).compareTo(leftChildIndex(currentIndex)) >= 1
-                || internalHeap.get(currentIndex).compareTo(rightChildIndex(currentIndex)) >= 1) { //while at least one child is smaller
+        //heapify-down
+        int currentIndex = 0;
+
+        while ((leftChildIndex(currentIndex) < internalHeap.size() && internalHeap.get(leftChildIndex(currentIndex)).compareTo(internalHeap.get(currentIndex)) >= 1) ||
+                (rightChildIndex(currentIndex) < internalHeap.size() && internalHeap.get(rightChildIndex(currentIndex)).compareTo(internalHeap.get(currentIndex)) >= 1)) { //while at least one child is smaller
 
             if (internalHeap.get(rightChildIndex(currentIndex)).compareTo(internalHeap.get(leftChildIndex(currentIndex))) >= 1) { //if left child smaller than right
-                internalHeap.set(leftChildIndex(currentIndex),internalHeap.set(currentIndex,internalHeap.get(leftChildIndex(currentIndex))));
+                internalHeap.set(rightChildIndex(currentIndex), internalHeap.set(currentIndex, internalHeap.get(rightChildIndex(currentIndex))));
                 currentIndex = leftChildIndex(currentIndex);
-                System.out.println("Current index after swapping the left child with the current is: "+currentIndex);
-            } else if (internalHeap.get(rightChildIndex(currentIndex)).compareTo(internalHeap.get(leftChildIndex(currentIndex))) >= -1){ //if right child smaller than left
-                internalHeap.set(rightChildIndex(currentIndex),internalHeap.set(currentIndex,internalHeap.get(rightChildIndex(currentIndex))));
+                System.out.println("Current index after swapping the left child with the current is: " + currentIndex);
+            } else if (internalHeap.get(rightChildIndex(currentIndex)).compareTo(internalHeap.get(leftChildIndex(currentIndex))) >= -1) { //if right child smaller than left todo verify working, swapping correct direction
+                internalHeap.set(rightChildIndex(currentIndex), internalHeap.set(currentIndex, internalHeap.get(rightChildIndex(currentIndex))));
                 currentIndex = rightChildIndex(currentIndex);
-                System.out.println("Current index after swapping the right child with the current is: "+currentIndex);
+                System.out.println("Current index after swapping the right child with the current is: " + currentIndex);
             } else { //both smaller, and same size
-                internalHeap.set(rightChildIndex(currentIndex),internalHeap.set(currentIndex,internalHeap.get(rightChildIndex(currentIndex))));
+                internalHeap.set(rightChildIndex(currentIndex), internalHeap.set(currentIndex, internalHeap.get(rightChildIndex(currentIndex))));
                 currentIndex = rightChildIndex(currentIndex);
             }
-            break;
         }
 
         return removedValue; //return last value
@@ -126,11 +126,7 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
      * @return left child index.
      */
     private int leftChildIndex(int initialIndex) {
-        if (initialIndex == 0)
-            return initialIndex;
-        else {
-            return (initialIndex * 2) + 1;
-        }
+        return (initialIndex * 2) + 1;
     }
 
     /**
@@ -140,11 +136,7 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
      * @return right child index.
      */
     private int rightChildIndex(int initialIndex) {
-        if (initialIndex == 0)
-            return initialIndex;
-        else {
-            return (initialIndex * 2) + 2;
-        }
+        return (initialIndex * 2) + 2;
     }
 
 }
