@@ -46,7 +46,6 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
             return null;
 
         internalHeap.set(internalHeap.size() - 1, internalHeap.set(0, internalHeap.get(internalHeap.size() - 1))); //swap first with last value
-        //System.out.println(toString());
 
         E removedValue = internalHeap.remove(internalHeap.size() - 1); //remove the last value
 
@@ -54,21 +53,18 @@ public class MyHeap<E extends Comparable> implements HeapInterface<E> {
         int currentIndex = 0;
         int rightIndex = rightChildIndex(currentIndex);
         int leftIndex = leftChildIndex(currentIndex);
-
         while ((leftIndex < internalHeap.size() && internalHeap.get(leftIndex).compareTo(internalHeap.get(currentIndex)) >= 1) ||
                 (rightIndex < internalHeap.size() && internalHeap.get(rightIndex).compareTo(internalHeap.get(currentIndex)) >= 1)) { //while at least one child is smaller
 
-            if (internalHeap.get(rightIndex).compareTo(internalHeap.get(leftIndex)) >= 1) { //if left child smaller than right
-                internalHeap.set(rightIndex, internalHeap.set(currentIndex, internalHeap.get(rightIndex)));
-                currentIndex = leftIndex;
-                System.out.println("Current index after swapping the left child with the current is: " + currentIndex);
-            } else if (internalHeap.get(rightIndex).compareTo(internalHeap.get(leftIndex)) >= -1) { //if right child smaller than left
+            if (rightIndex >= internalHeap.size()) { //if right child smaller than left
                 internalHeap.set(leftIndex, internalHeap.set(currentIndex, internalHeap.get(leftIndex)));
                 currentIndex = leftIndex;
-                System.out.println("Current index after swapping the right child with the current is: " + currentIndex);
-            } else { //both smaller, and same size
+            } else if (internalHeap.get(rightIndex).compareTo(internalHeap.get(leftIndex)) >= 1) { //if left child smaller than right
                 internalHeap.set(rightIndex, internalHeap.set(currentIndex, internalHeap.get(rightIndex)));
                 currentIndex = rightIndex;
+            } else if (internalHeap.get(rightIndex).compareTo(internalHeap.get(leftIndex)) <= -1) { //if right child smaller than left
+                internalHeap.set(leftIndex, internalHeap.set(currentIndex, internalHeap.get(leftIndex)));
+                currentIndex = leftIndex;
             }
             rightIndex = rightChildIndex(currentIndex); //update after changing currentIndex
             leftIndex = leftChildIndex(currentIndex);
