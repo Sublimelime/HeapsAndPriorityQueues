@@ -22,49 +22,25 @@ public class Mainfile {
                         System.out.println(mqueue.get(i));
                     }
                     break;
-                case 2: //offer/add item to back of queue
-                    System.out.println("Please enter an integer.");
-                    Integer input = scan.nextInt();
-                    mqueue.offer(input);
-                    System.out.println("The integer was added to the back of the queue.");
+                case 2: //size
+                    System.out.println("Size of the queue is: "+mqueue.size());
                     break;
-                case 3: //peek - prints first item in queue
-                    if (mqueue.empty()) {
-                        System.out.println("Queue is empty.");
-                        break;
-                    } else
-                        System.out.println(mqueue.peek());
+                case 3:
+                    System.out.println("The queue "+((mqueue.empty()) ? "is empty.":"Is not empty."));
                     break;
-                case 4: //poll - remove front item and print
-                    if (mqueue.empty()) {
-                        System.out.println("Queue is empty.");
-                        break;
-                    } else
-                        System.out.println(mqueue.poll());
+                case 4:
+                    System.out.println("Add what to the tree?");
+                    mqueue.add(scan.nextInt());
                     break;
-                case 5: //size print size of queue
-                    System.out.println("The queue size is " + mqueue.size());
+                case 5:
+                    System.out.println("Removed "+mqueue.remove()+" from the tree.");
                     break;
-                case 6: //get print item in spot provided
-                    System.out.println("Get from what index?");
-                    int index = scan.nextInt();
-                    if (index >= mqueue.size() || index <0) { //if value is out of bounds
-                        System.out.println("Value out of bounds.");
-                        break;
-                    } else
-                        System.out.println("The value is: " + mqueue.get(index));
+                case 6:
+                    System.out.println("Cleared the queue.");
+                    mqueue = new PrioQueue<>();
                     break;
-                case 7: //prints if queue empty
-                    String isEmpty = (mqueue.empty()) ? "is" : "is not";
-                    System.out.println("The queue " + isEmpty + " empty.");
-                    break;
-                case 8: //exit game
-                    System.out.println("Exiting...");
+                case 7:
                     System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-                    break;
             }
 
         } while (true);
@@ -79,13 +55,12 @@ public class Mainfile {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("1. Print – Prints all the data in the queue \n" +
-                "2. Offer/Add –Adds an item to the back of the queue \n" +
-                "3. Peek/Element – Prints the value of the front item in the queue \n" +
-                "4. Poll/Remove – Removes the front item from the queue and prints its value \n" +
-                "5. Size – prints the number of items in the queue \n" +
-                "6. Get – Prints the item in spot X. (X will come from the user) \n" +
-                "7. Empty – Prints true when the queue is empty and false when it is not \n" +
-                "8. Exit – Closes the program");
+                "2. Size – prints the number of items in the queue \n" +
+                "3. Empty – Prints true when the queue is empty and false when it is not \n" +
+                "4. Offer/Add –Adds an item to the back of the queue \n" +
+                "5. Poll/Remove – Removes the front item from the queue and prints its value \n" +
+                "6. Clear \n" +
+                "7. Exit – Closes the program");
 
         return scanner.nextByte();
     }
