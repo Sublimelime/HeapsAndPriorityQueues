@@ -26,13 +26,18 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
     }
 
     public boolean add(E o) {
-        return queue.add(o);
+        for (int i = 0; i < queue.size() - 1; i++) {
+            if (queue.get(i).compareTo(o) <= 0) { //if value is smaller or the same as an existing value
+                queue.add(i, o);
+                return true;
+            }
+        }
+        queue.add(o); //if it can't find a place, add at the end (is bigger than all vals)
+        return true;
     }
 
-
     public boolean offer(E o) {
-        queue.add(queue.size(),o);
-        return true;
+        return add(o);
     }
 
     public E peek() {
@@ -55,7 +60,7 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
 
 
     public boolean empty() {
-        return queue.size()==0;
+        return queue.size() == 0;
     }
 
 

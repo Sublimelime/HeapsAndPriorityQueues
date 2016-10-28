@@ -30,10 +30,10 @@ public class Mainfile {
                     break;
                 case 4:
                     System.out.println("Add what to the tree?");
-                    mqueue.add(scan.nextInt());
+                    mqueue.offer(scan.nextInt());
                     break;
                 case 5:
-                    System.out.println("Removed "+mqueue.remove()+" from the tree.");
+                    System.out.println("Removed "+mqueue.poll()+" from the tree.");
                     break;
                 case 6:
                     System.out.println("Cleared the queue.");

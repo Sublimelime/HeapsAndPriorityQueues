@@ -1,13 +1,21 @@
-public interface PriorityQueueInterface<E extends Comparable>
-{
-	public boolean add(E o);
-	public boolean offer(E o);
-	public E poll();
-	public E remove();
-	public int size();
-	public boolean empty();
-	public void clear();
-	public E get(int x);
-	public E set(int x, E item);
-	public E peek();
+public interface PriorityQueueInterface<E extends Comparable> {
+    boolean add(E o);
+
+    boolean offer(E o);
+
+    E poll();
+
+    E remove();
+
+    int size();
+
+    boolean empty();
+
+    void clear();
+
+    E get(int x);
+
+    E set(int x, E item);
+
+    E peek();
 }
