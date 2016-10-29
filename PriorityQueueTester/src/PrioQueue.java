@@ -11,9 +11,13 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
 
     private ArrayList<E> queue;
 
+    public PrioQueue() {
+        this.queue = new ArrayList<>();
+    }
+
     @Override
     public void clear() {
-
+        queue = new ArrayList<>();
     }
 
     @Override
@@ -21,18 +25,15 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
         return null;
     }
 
-    public PrioQueue() {
-        this.queue = new ArrayList<>();
-    }
-
     public boolean add(E o) {
         for (int i = 0; i < queue.size() - 1; i++) {
-            if (queue.get(i).compareTo(o) <= 0) { //if value is smaller or the same as an existing value
+            if (queue.get(i).compareTo(o) >= 0) { //if provided value is smaller or the same as an existing value
                 queue.add(i, o);
                 return true;
             }
         }
         queue.add(o); //if it can't find a place, add at the end (is bigger than all vals)
+        queue.sort(null); //sort for sanity
         return true;
     }
 

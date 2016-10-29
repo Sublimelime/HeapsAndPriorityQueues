@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Part of project: QueueTester
  **/
 @SuppressWarnings("WeakerAccess")
-public class Mainfile {
+public class MainFile {
     public static void main(String[] args) {
         PrioQueue<Integer> mqueue = new PrioQueue<>();
 
@@ -23,24 +23,28 @@ public class Mainfile {
                     }
                     break;
                 case 2: //size
-                    System.out.println("Size of the queue is: "+mqueue.size());
+                    System.out.println("Size of the queue is: " + mqueue.size());
                     break;
                 case 3:
-                    System.out.println("The queue "+((mqueue.empty()) ? "is empty.":"Is not empty."));
+                    System.out.println("The queue " + ((mqueue.empty()) ? "is empty." : "is not empty."));
                     break;
                 case 4:
-                    System.out.println("Add what to the tree?");
+                    System.out.println("Add what to the queue?");
                     mqueue.offer(scan.nextInt());
                     break;
                 case 5:
-                    System.out.println("Removed "+mqueue.poll()+" from the tree.");
+                    System.out.println("Removed " + mqueue.poll() + " from the queue.");
                     break;
                 case 6:
                     System.out.println("Cleared the queue.");
-                    mqueue = new PrioQueue<>();
+                    mqueue.clear();
                     break;
                 case 7:
                     System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
             }
 
         } while (true);
