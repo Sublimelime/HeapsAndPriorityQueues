@@ -45,11 +45,6 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
         return internalQueue.get(0);
     }
 
-    public E element() {
-        return null;
-    }
-
-
     public E poll() {
         return internalQueue.remove(0);
     }

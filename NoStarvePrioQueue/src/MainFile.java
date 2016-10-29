@@ -19,7 +19,7 @@ public class MainFile {
                 case 1: //print all data in queue
                     System.out.println("Printing...");
                     for (int i = 0; i < mqueue.size(); i++) {
-                        System.out.println(mqueue.get(i));
+                        System.out.println(mqueue.get(i).toString());
                     }
                     break;
                 case 2: //size
@@ -30,10 +30,12 @@ public class MainFile {
                     break;
                 case 4:
                     System.out.println("Add what to the queue?");
-                    //mqueue.offer(scan.next()); todo change to add a new PrioNode
+                    String data = scan.next();
+                    System.out.println("At what priority?");
+                    //mqueue.add(new PriorityNode<>(data,scan.nextInt())); //todo help
                     break;
                 case 5:
-                    System.out.println("Removed " + mqueue.poll() + " from the queue.");
+                    System.out.println("Removed " + mqueue.poll().toString() + " from the queue.");
                     break;
                 case 6:
                     System.out.println("Cleared the queue.");
