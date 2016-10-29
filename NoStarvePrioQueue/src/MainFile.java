@@ -8,7 +8,7 @@ import java.util.Scanner;
 @SuppressWarnings("WeakerAccess")
 public class MainFile {
     public static void main(String[] args) {
-        NSPrioQueue<PriorityNode> mqueue = new NSPrioQueue<>();
+        NSPrioQueue<PriorityNode<String>> mqueue = new NSPrioQueue<>();
 
         do {
             System.out.println("---------------------------\nPlease select a choice:");
@@ -30,7 +30,7 @@ public class MainFile {
                     break;
                 case 4:
                     System.out.println("Add what to the queue?");
-                    mqueue.offer(scan.nextInt());
+                    //mqueue.offer(scan.next()); todo change to add a new PrioNode
                     break;
                 case 5:
                     System.out.println("Removed " + mqueue.poll() + " from the queue.");
