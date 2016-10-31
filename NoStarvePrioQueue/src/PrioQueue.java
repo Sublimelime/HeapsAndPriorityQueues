@@ -26,8 +26,8 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
     }
 
     public boolean add(E o) {
-        for (int i = 0; i < internalQueue.size() - 1; i++) {
-            if (internalQueue.get(i).compareTo(o) >= 0) { //if provided value is smaller or the same as an existing value
+        for (int i = 0; i < internalQueue.size(); i++) {
+            if (internalQueue.get(i).compareTo(o) > 0) { //if provided value is smaller or the same as an existing value
                 internalQueue.add(i, o);
                 return true;
             }
@@ -54,6 +54,9 @@ public class PrioQueue<E extends Comparable> implements PriorityQueueInterface<E
         return internalQueue.remove(0);
     }
 
+    public ArrayList<E> getInternalQueue() {
+        return internalQueue;
+    }
 
     public boolean empty() {
         return internalQueue.size() == 0;
